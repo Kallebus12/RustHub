@@ -1,0 +1,28 @@
+@using EPiServer.Web.Mvc.Html
+@using RustHub.Components.Frameworks.NavigationMenu
+<!DOCTYPE HTML>
+<html>
+<head>
+    @await Component.InvokeAsync("MetaData")
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" /> <!-- Ensure this path is correct -->
+    <required-client-resources area="Header"/>
+</head>
+<body>
+     @await Html.RenderEPiServerQuickNavigatorAsync()
+    @await Component.InvokeAsync(typeof(TopNavigationViewComponent))
+    @* @await Component.InvokeAsync("Menu") *@
+    <div class="container">
+        <p>Layout test</p>
+        @RenderBody()
+    </div>
+    <footer>
+        <p>Footer content here</p>
+    </footer>
+    <required-client-resources area="Footer" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

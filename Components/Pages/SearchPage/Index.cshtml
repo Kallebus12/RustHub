@@ -1,0 +1,25 @@
+@using EPiServer.Web.Mvc.Html
+@using RustHub.Components.Pages.BaseClasses
+@using RustHub.Components.Pages.SearchPage
+@model ComposedPageViewModel<SearchPage, SearchPageViewModel>
+
+@Html.BeginForm(FormMethod.Post)
+{
+    <input type="text" tabindex="1" name="query" value="@Model.viewModel.SearchQuery" />
+    <input type="submit" tabindex="2" class="btn" value="Search" />
+}
+@if (Model.viewModel.Results != null)
+{
+    <p>Your search for <i>@Model.viewModel.SearchQuery</i> resulted in @Model.viewModel.Results.Count() hits</p>
+    <div class="listResult">
+        <ul>
+            @foreach (var item in Model.viewModel.Results)
+            {
+                <li>
+                    <h4><a href="@item.Url">@item.Title</a></h4>
+                    @item.Excerpt
+                </li>
+            }
+        </ul>
+    </div>
+}

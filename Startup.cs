@@ -3,6 +3,7 @@ using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using EPiServer.Find;
 
 namespace RustHub;
 
@@ -29,6 +30,7 @@ public class Startup
             .AddCms()
             .AddAdminUserRegistration()
             .AddEmbeddedLocalization<Startup>();
+        services.AddFind();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

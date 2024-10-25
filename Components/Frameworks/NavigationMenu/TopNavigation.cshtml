@@ -1,0 +1,21 @@
+@using EPiServer.Web
+@using EPiServer.Web.Mvc.Html
+@using Microsoft.AspNetCore.Mvc.Razor
+@using RustHub.Components.Frameworks.NavigationMenu;
+
+@{
+    HelperResult ItemTemplate(NavigationHelper.MenuItem item)
+    {
+        <li class="nav-item">
+            @Html.PageLink(item.Page, null, new { @class = "nav-link" + (item.Selected ? " active" : null) })
+        </li>
+        return new HelperResult(w => Task.CompletedTask);
+    }
+}
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">RustRaidGuide</a>
+    <ul class="navbar-nav">
+        @Html.MenuList(SiteDefinition.Current.StartPage, ItemTemplate)
+    </ul>
+</nav>

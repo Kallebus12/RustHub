@@ -6,14 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="EPiServer"/>
-    <Using Include="EPiServer.Core"/>
-    <Using Include="EPiServer.DataAbstraction"/>
-    <Using Include="EPiServer.DataAnnotations"/>
+    <Using Include="EPiServer" />
+    <Using Include="EPiServer.Core" />
+    <Using Include="EPiServer.DataAbstraction" />
+    <Using Include="EPiServer.DataAnnotations" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS" Version="12.29.0" />
+    <PackageReference Include="EPiServer.CMS" Version="12.31.2" />
+     <PackageReference Include="EPiServer.Find.Cms" Version="16.3.0" />
   </ItemGroup>
   
   <ItemGroup>
