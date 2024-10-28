@@ -1,0 +1,10 @@
+@using RustHub.Components.Blocks.VideoBlock
+@model VideoBlock
+
+<div class="text-block">
+    <h2>@Model.Title</h2>
+    <p>@Model.Description</p>
+    <div class="text-content">
+        @Html.Raw(Model.Content)
+    </div>
+</div>
