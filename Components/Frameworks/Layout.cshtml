@@ -11,16 +11,25 @@
     <required-client-resources area="Header"/>
 </head>
 <body>
-     @await Html.RenderEPiServerQuickNavigatorAsync()
+    @await Html.RenderEPiServerQuickNavigatorAsync()
     @await Component.InvokeAsync(typeof(TopNavigationViewComponent))
     @* @await Component.InvokeAsync("Menu") *@
-    <div class="container">
-        <p>Layout test</p>
-        @RenderBody()
-    </div>
-    <footer style="background-color: cornflowerblue;">
-        <p>Footer content here</p>
+
+    @RenderBody()
+
+    <footer class="py-4" style="background-color: #3399ff;">
+        <div class="container text-center text-white">
+            <p class="mb-2">RustRaidGuide &copy; 2024. All Rights Reserved.</p>
+            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna vitae purus ultrices dapibus. Fusce at lacus id purus sollicitudin laoreet.</p>
+
+            <div class="d-flex justify-content-center">
+                <a href="#" class="text-white mx-3">Privacy Policy</a>
+                <a href="#" class="text-white mx-3">Terms of Service</a>
+                <a href="#" class="text-white mx-3">Contact Us</a>
+            </div>
+        </div>
     </footer>
+
     <required-client-resources area="Footer" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

@@ -19,9 +19,36 @@ namespace RustHub.Components.Frameworks.NavigationMenu
 
         public IViewComponentResult Invoke()
         {
-            // Load the start page (or the root page for the menu)
             var startPage = _contentLoader.Get<StartPage>(ContentReference.StartPage);
-            var menuItems = GetMenuItems(startPage.ContentLink);
+            var menuItems = GetMenuItems(startPage.ContentLink).ToList();
+
+            // Check if the user is authenticated
+            var isAuthenticated = HttpContext.User.Identity.IsAuthenticated;
+
+            if (!isAuthenticated)
+            {
+                // Add LoginPage and RegisterPage if user is not logged in
+                if (startPage.LoginPage != null)
+                {
+                    var loginPage = _contentLoader.Get<PageData>(startPage.LoginPage);
+                    menuItems.Add(loginPage);
+                }
+
+                if (startPage.RegisterPage != null)
+                {
+                    var registerPage = _contentLoader.Get<PageData>(startPage.RegisterPage);
+                    menuItems.Add(registerPage);
+                }
+            }
+            else
+            {
+                // Optionally, add a Logout link
+                menuItems.Add(new PageData
+                {
+                    Name = "Logout",
+                    LinkURL = "/Account/Logout" // Update this if your logout URL is different
+                });
+            }
 
             var viewModel = new NavigationModel
             {

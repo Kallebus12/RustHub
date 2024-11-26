@@ -4,6 +4,7 @@ using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using EPiServer.Find;
+using RustHub.Components.Services;
 
 namespace RustHub;
 
@@ -23,6 +24,13 @@ public class Startup
             AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data"));
 
             services.Configure<SchedulerOptions>(options => options.Enabled = false);
+            services.AddControllers();
+            services.AddSingleton<MongoDbContext>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<AuthService>();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         services
@@ -44,6 +52,8 @@ public class Startup
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseSession();
+
 
         app.UseEndpoints(endpoints =>
         {

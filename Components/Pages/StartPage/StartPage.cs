@@ -16,6 +16,17 @@ namespace RustHub.Components.Pages.StartPage
         Order = 100)]
         public virtual ContentArea MainContent { get; set; }
 
+        [Display(
+        GroupName = SystemTabNames.Content,
+        Order = 200)]
+        public virtual ContentArea CardContent { get; set; }
+
+        [Display(Name = "Login Page", Description = "The page for user login")]
+        public virtual ContentReference LoginPage { get; set; }
+
+        [Display(Name = "Register Page", Description = "The page for user registration")]
+        public virtual ContentReference RegisterPage { get; set; }
+
         [Display(Name = "Sidfot - Adress", GroupName = GroupNames.Footer, Order = 3000)]
         public virtual string FooterAddress { get; set; }
     }

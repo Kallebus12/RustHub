@@ -1,0 +1,23 @@
+﻿@using EPiServer
+@using EPiServer.Web.Routing
+@inject IUrlResolver UrlResolver
+@using RustHub.Components.Blocks.CardBlock
+@model CardBlock
+
+<div class="card">
+    <img src="@UrlResolver.GetUrl(Model.Image)" class="card-img-top" alt="Card image">
+
+    <!-- Card Icon -->
+    <div class="row cardIcon">
+        <div class="col-12 text-center">
+            <div class="icon mx-auto">
+                <i class="@Model.IconClass"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">@Html.DisplayFor(m => m.Title)</h5>
+        <p class="card-text">@Html.DisplayFor(m => m.Text)</p>
+    </div>
+</div>

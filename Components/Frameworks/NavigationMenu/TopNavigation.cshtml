@@ -7,15 +7,20 @@
     HelperResult ItemTemplate(NavigationHelper.MenuItem item)
     {
         <li class="nav-item">
-            @Html.PageLink(item.Page, null, new { @class = "nav-link" + (item.Selected ? " active" : null) })
+            @Html.PageLink(item.Page, null, new { @class = "nav-link text-white" + (item.Selected ? " active" : null) })
         </li>
         return new HelperResult(w => Task.CompletedTask);
     }
 }
 
-<nav class="navbar navbar-expand-lg" style="background-color: cornflowerblue;">
-    <a class="navbar-brand" href="@Url.Action("Index", "Home")">RustRaidGuide</a>
-    <ul class="navbar-nav">
-        @Html.MenuList(SiteDefinition.Current.StartPage, ItemTemplate)
-    </ul>
+<nav class="navbar navbar-expand-lg" style="background-color: #3399ff;">
+        <a class="navbar-brand text-white" href="@Url.Action("Index", "Home")">RustRaidGuide</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color: #ffffff;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                @Html.MenuList(SiteDefinition.Current.StartPage, ItemTemplate)
+            </ul>
+        </div>
 </nav>

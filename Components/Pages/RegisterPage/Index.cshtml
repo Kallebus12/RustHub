@@ -1,0 +1,22 @@
+﻿@model RustHub.Components.Shared.Models.UserModel
+
+<h1>Register</h1>
+<form method="post" action="@Url.Action("Register", "RegisterPage")">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="Username" value="@Model?.Username" required />
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="Password" required />
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+<p class="text-center mt-3">
+    <a href="@Url.Action("Index", "LoginPage")" class="btn btn-link">Already have an account? Log in here</a>
+</p>

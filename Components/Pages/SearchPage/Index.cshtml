@@ -3,23 +3,40 @@
 @using RustHub.Components.Pages.SearchPage
 @model ComposedPageViewModel<SearchPage, SearchPageViewModel>
 
-@Html.BeginForm(FormMethod.Post)
-{
-    <input type="text" tabindex="1" name="query" value="@Model.viewModel.SearchQuery" />
-    <input type="submit" tabindex="2" class="btn" value="Search" />
-}
-@if (Model.viewModel.Results != null)
-{
-    <p>Your search for <i>@Model.viewModel.SearchQuery</i> resulted in @Model.viewModel.Results.Count() hits</p>
-    <div class="listResult">
-        <ul>
+<div class="container mt-4">
+    <!-- Search Form -->
+    <div class="row mb-4">
+        <div class="col-md-8 offset-md-2">
+            @using (Html.BeginForm("Search", "SearchPage", FormMethod.Post, new { @class = "input-group" }))
+            {
+                <input type="text" tabindex="1" name="query" class="form-control" placeholder="Search..." value="@Model.viewModel.SearchQuery" />
+                <button type="submit" tabindex="2" class="btn btn-primary">Search</button>
+            }
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    @if (Model.viewModel.Results != null && Model.viewModel.Results.Any())
+    {
+        <p>Your search for <i>@Model.viewModel.SearchQuery</i> resulted in @Model.viewModel.Results.Count() hits</p>
+        <div class="listResult row">
             @foreach (var item in Model.viewModel.Results)
             {
-                <li>
-                    <h4><a href="@item.Url">@item.Title</a></h4>
-                    @item.Excerpt
-                </li>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="@item.Url">@item.Title</a></h5>
+                            <p class="card-text">@item.Excerpt</p>
+                        </div>
+                    </div>
+                </div>
             }
-        </ul>
-    </div>
-}
+        </div>
+    }
+    else
+    {
+        <div class="text-center text-danger">
+            No results found for <i>@Model.viewModel.SearchQuery</i>. Please try another search term.
+        </div>
+    }
+</div>

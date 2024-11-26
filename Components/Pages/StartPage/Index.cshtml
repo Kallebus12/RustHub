@@ -1,6 +1,17 @@
 @using RustHub.Components.Pages.StartPage
+@using EPiServer.Web.Mvc.Html
 @model StartPage
 
+<div class="wallpaper">
+    <div class="container main">
+        <!-- Main Content -->
+        <div class="mb-4">
+            @Html.PropertyFor(m => Model.MainContent)
+        </div>
 
-
-<h1>Hello Rust buddies!</h1>
+        <!-- Card Content Section -->
+        <div class="col-12 row justify-content-center">
+            @Html.PropertyFor(m => Model.CardContent)
+        </div>
+    </div>
+</div>
